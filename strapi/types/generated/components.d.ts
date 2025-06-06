@@ -151,6 +151,7 @@ export interface DynamicZoneHero extends Struct.ComponentSchema {
   attributes: {
     CTAs: Schema.Attribute.Component<'shared.button', true>;
     heading: Schema.Attribute.String;
+    logo: Schema.Attribute.Relation<'oneToOne', 'api::logo.logo'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -352,6 +353,20 @@ export interface ItemsRayItems extends Struct.ComponentSchema {
   };
 }
 
+export interface MediaImage extends Struct.ComponentSchema {
+  collectionName: 'components_media_images';
+  info: {
+    displayName: 'Image';
+    icon: 'picture';
+  };
+  attributes: {
+    MediaFile: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
 export interface SharedButton extends Struct.ComponentSchema {
   collectionName: 'components_shared_buttons';
   info: {
@@ -441,12 +456,14 @@ export interface SharedSection extends Struct.ComponentSchema {
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
+    description: '';
     displayName: 'seo';
     icon: 'search';
   };
   attributes: {
     canonicalURL: Schema.Attribute.String;
     keywords: Schema.Attribute.Text;
+    LogoMain: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     metaDescription: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -530,6 +547,7 @@ declare module '@strapi/strapi' {
       'items.input': ItemsInput;
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.ray-items': ItemsRayItems;
+      'media.image': MediaImage;
       'shared.button': SharedButton;
       'shared.form': SharedForm;
       'shared.launches': SharedLaunches;
