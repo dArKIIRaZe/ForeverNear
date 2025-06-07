@@ -347,7 +347,7 @@ const Cover = ({
   return (
     <span
       className={cn(
-        "border rounded-md px-1 py-0.5 mr-1 border-indigo-500 bg-indigo-500/10 text-white",
+        "border rounded-md px-1 py-0.5 mr-1 border-beige bg-beige/10 text-dark-blue",
         className
       )}
     >

@@ -18,10 +18,10 @@ export const ProductItems = ({
 }) => {
   return (
     <div className="py-20">
-      <h2 className="text-2xl md:text-4xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white mb-2">
+      <h2 className="text-2xl md:text-4xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-dark-blue via-beige to-beige mb-2">
         {heading}
       </h2>
-      <p className="text-neutral-500 text-lg mt-4 mb-10">
+      <p className="text-dark-blue text-lg mt-4 mb-10">
         {sub_heading}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3  gap-20">

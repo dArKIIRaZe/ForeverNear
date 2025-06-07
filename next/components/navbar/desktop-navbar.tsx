@@ -43,11 +43,11 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
   return (
     <motion.div
       className={cn(
-        "w-full flex relative justify-between px-4 py-3 rounded-md  transition duration-200 bg-transparent mx-auto"
+        "w-full flex relative justify-between px-4 py-3 rounded-full  transition duration-200 bg-dark-blue mx-auto text-beige"
       )}
       animate={{
         width: showBackground ? "80%" : "100%",
-        background: showBackground ? "var(--neutral-900)" : "transparent",
+        background: showBackground ? "#1A2A36" : "#1A2A36",
       }}
       transition={{
         duration: 0.4,
@@ -62,7 +62,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
             transition={{
               duration: 1,
             }}
-            className="absolute inset-0 h-full w-full bg-neutral-900 pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full"
+            className="absolute inset-0 h-full w-full bg-beige/20 pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full"
           />
         )}
       </AnimatePresence>

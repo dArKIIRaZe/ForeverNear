@@ -3,8 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 export const Cover = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <div className="relative inline-block bg-neutral-900 px-2 py-1">
-      <span className="text-white">{children}</span>
+    <div className="relative inline-block bg-dark-blue px-2 py-1">
+      <span className="text-beige">{children}</span>
       <CircleIcon className="absolute -right-[2px] -top-[2px]" />
       <CircleIcon className="absolute -bottom-[2px] -right-[2px]" delay={0.4} />
       <CircleIcon className="absolute -left-[2px] -top-[2px]" delay={0.8} />

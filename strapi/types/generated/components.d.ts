@@ -149,6 +149,7 @@ export interface DynamicZoneHero extends Struct.ComponentSchema {
     icon: 'layout';
   };
   attributes: {
+    BackgroundVideo: Schema.Attribute.Media<'files' | 'videos'>;
     CTAs: Schema.Attribute.Component<'shared.button', true>;
     heading: Schema.Attribute.String;
     Pic: Schema.Attribute.Media<'files' | 'images'>;
@@ -462,6 +463,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
     icon: 'search';
   };
   attributes: {
+    BackgroundVideo: Schema.Attribute.Media<'files' | 'videos'>;
     canonicalURL: Schema.Attribute.String;
     keywords: Schema.Attribute.Text;
     LogoMain: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;

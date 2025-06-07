@@ -10,7 +10,7 @@ import { Card } from "./card";
 export const HowItWorks = ({ heading, sub_heading, steps }: { heading: string, sub_heading: string, steps: any }) => {
   return (
     <div>
-      <Container className="py-20 max-w-7xl mx-auto  relative z-40">
+      <Container className="py-20 max-w-7xl mx-auto  relative z-40 bg-dark-blue">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconSettings className="h-6 w-6 text-white" />
         </FeatureIconContainer>

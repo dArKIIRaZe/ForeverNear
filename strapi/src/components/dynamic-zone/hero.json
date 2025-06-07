@@ -27,6 +27,14 @@
         "files",
         "images"
       ]
+    },
+    "BackgroundVideo": {
+      "allowedTypes": [
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

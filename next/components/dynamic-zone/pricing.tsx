@@ -33,7 +33,7 @@ export const Pricing = ({ heading, sub_heading, plans }: { heading: string, sub_
     console.log("click", plan);
   };
   return (
-    <div className="pt-40">
+    <div className="pt-40 bg-dark-blue">
       <Container>
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconReceipt2 className="h-6 w-6 text-white" />
@@ -176,24 +176,24 @@ const Divider = ({ featured }: { featured?: boolean }) => {
   return (
     <div className="relative">
       <div
-        className={cn("w-full h-px bg-neutral-950", featured && "bg-white")}
+        className={cn("w-full h-px bg-dark-blue", featured && "bg-beige")}
       />
       <div
         className={cn(
-          "w-full h-px bg-neutral-800",
-          featured && "bg-neutral-200"
+          "w-full h-px bg-beige",
+          featured && "bg-dark-blue"
         )}
       />
       <div
         className={cn(
-          "absolute inset-0 h-5 w-5 m-auto rounded-xl bg-neutral-800 shadow-[0px_-1px_0px_0px_var(--neutral-700)] flex items-center justify-center",
-          featured && "bg-white shadow-aceternity"
+          "absolute inset-0 h-5 w-5 m-auto rounded-xl bg-dark-blue shadow-[0px_-1px_0px_0px_var(--dark-blue)] flex items-center justify-center",
+          featured && "bg-beige shadow-aceternity"
         )}
       >
         <IconPlus
           className={cn(
-            "h-3 w-3 [stroke-width:4px] text-neutral-300",
-            featured && "text-black"
+            "h-3 w-3 [stroke-width:4px] text-beige",
+            featured && "text-dark-blue"
           )}
         />
       </div>

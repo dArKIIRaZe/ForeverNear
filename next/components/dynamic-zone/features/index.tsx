@@ -28,8 +28,8 @@ function convertWordToNumber(word: string) {
 
 export const Features = ({ heading, sub_heading, globe_card, ray_card, graph_card, social_media_card }: { heading: string, sub_heading: string, globe_card: any, ray_card: any, graph_card: any, social_media_card: any }) => {
   return (
-    <GradientContainer className="md:my-20">
-      <Container className="py-20 max-w-7xl mx-auto  relative z-40">
+    <GradientContainer className="md:my-20 bg-dark-blue">
+      <Container className="py-30 max-w-7xl mx-auto  relative z-40 bg-dark-blue">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>

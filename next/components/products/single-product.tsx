@@ -113,8 +113,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
 const Divider = () => {
   return (
     <div className="relative">
-      <div className="w-full h-px bg-neutral-950" />
-      <div className="w-full h-px bg-neutral-800" />
+      <div className="w-full h-px bg-dark-blue" />
+      <div className="w-full h-px bg-beige" />
     </div>
   );
 };

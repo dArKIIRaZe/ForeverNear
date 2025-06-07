@@ -35,7 +35,7 @@ export async function BlogLayout({
             alt={article.title}
           />
         ) : (
-          <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
+          <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-dark-blue flex items-center justify-center">
             {/* <Logo /> */}
           </div>
         )}

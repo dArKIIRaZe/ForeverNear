@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import ShootingStars from "../decorations/shooting-star";
 import StarBackground from "../decorations/star-background";
 import { FullImage } from "@/components/pic";
 import { Logo } from "@/components/logo";
+import { FullVideo } from "@/components/video";
+import { strapiImage } from "@/lib/strapi/strapiImage";
 
 import { Heading } from "../elements/heading";
 import { Subheading } from "../elements/subheading";
@@ -12,29 +14,74 @@ import { Button } from "../elements/button";
 import { Cover } from "../decorations/cover";
 import { motion } from "framer-motion";
 
-export const Hero = ({ heading, sub_heading, CTAs, locale, image }: { heading: string; sub_heading: string; CTAs: any[], locale: string, image?: any }) => {
+export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo}: { heading: string; sub_heading: string; CTAs: any[], locale: string, Pic?: any, BackgroundVideo?: any }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Ensure video plays when component mounts
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video autoplay failed:", error);
+      });
+    }
+  }, []);
+
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    console.error("Video error:", e);
+  };
+
   return (
-    <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center bg-[#F6EDDD]">
+    <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center bg-dark-blue">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onError={handleVideoError}
+          className="absolute min-w-full min-h-full object-cover"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            filter: 'brightness(0.8)'
+          }}
+        >
+          <source 
+            src={BackgroundVideo?.url ? strapiImage(BackgroundVideo.url) : undefined}
+            type="video/mp4"
+            onError={(e) => console.error("Source error:", e)}
+          />
+          Your browser does not support the video tag.
+        </video>
+        {/* Overlay to ensure content visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-beige/60 via-beige/20 to-beige/20" />
+      </div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
+        className="relative z-10"
       >
         <StarBackground />
         <ShootingStars />
       </motion.div>
-      <div className="flex flex-col items-center justify-center z-10">
+      <div className="flex flex-col items-center justify-center z-10 relative drop-shadow-xl">
         <div className="mb-6">
-          
-          <FullImage image={image} />
+          <FullImage image={Pic} />
         </div>
         <Heading
           as="h1"
-          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-[#1A2A36]"
+          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-beige drop-shadow-lg"
         >
           {heading}
         </Heading>
-        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-[#1A2A36] max-w-2xl mx-auto">
+        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-beige max-w-2xl mx-auto drop-shadow-md">
           {sub_heading}
         </Subheading>
         <div className="flex space-x-4 items-center mt-8">
@@ -43,7 +90,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, image }: { heading: s
               key={cta?.id}
               as={Link}
               href={`/${locale}${cta.URL}`}
-              className="bg-[#1A2A36] text-[#F6EDDD] hover:bg-[#24384a]"
+              className="bg-beige/90 backdrop-blur-sm text-dark-blue hover:bg-beige transition-all duration-300"
               {...(cta.variant && { variant: cta.variant })}
             >
               {cta.text}
@@ -51,7 +98,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, image }: { heading: s
           ))}
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-charcoal to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-beige/80 to-transparent" />
     </div>
   );
 };

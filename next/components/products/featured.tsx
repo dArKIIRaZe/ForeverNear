@@ -32,12 +32,12 @@ const FeaturedItem = ({ product, locale }: { product: Product, locale:string }) 
   return (
     <Link
       href={`/${locale}/products/${product.slug}` as never}
-      className="group border border-neutral-800 rounded-md overflow-hidden relative block"
+      className="group border border-dark-blue rounded-md overflow-hidden relative block"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black transition-all duration-200 z-30" />
-      <div className="absolute text-sm top-4 right-2 md:top-10 md:right-10 z-40 bg-white rounded-full pr-1 pl-4 py-1 text-black font-medium flex gap-4 items-center">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark-blue transition-all duration-200 z-30" />
+      <div className="absolute text-sm top-4 right-2 md:top-10 md:right-10 z-40 bg-beige rounded-full pr-1 pl-4 py-1 text-dark-blue font-medium flex gap-4 items-center">
         <span>{product.name}</span>
-        <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-white px-2 py-1 rounded-full">
+        <span className="bg-gradient-to-r from-dark-blue via-beige to-dark-blue text-beige px-2 py-1 rounded-full">
           ${formatNumber(product.price)}
         </span>
       </div>

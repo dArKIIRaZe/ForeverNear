@@ -45,11 +45,20 @@
       "type": "string"
     },
     "LogoMain": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
+      ]
+    },
+    "BackgroundVideo": {
+      "allowedTypes": [
+        "files",
+        "videos"
       ],
       "type": "media",
       "multiple": false

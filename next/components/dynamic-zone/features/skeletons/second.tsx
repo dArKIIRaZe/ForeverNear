@@ -123,7 +123,7 @@ const Cover = ({
   return (
     <span
       className={cn(
-        "border rounded-md px-1 py-0.5 mr-1 border-indigo-500 bg-indigo-500/10 text-white",
+        "border rounded-md px-1 py-0.5 mr-1 border-beige bg-beige/10 text-dark-blue",
         className
       )}
     >
@@ -203,14 +203,14 @@ const Container = ({
   return (
     <div
       className={cn(
-        "p-0.5 rounded-lg border border-neutral-600 w-fit",
+        "p-0.5 rounded-lg border border-beige w-fit",
         className
       )}
       {...props}
     >
       <div
         className={cn(
-          "h-10  text-xs px-2 text-neutral-400  rounded-[5px] flex items-center justify-center bg-neutral-900 shadow-[0px_0px_8px_0px_rgba(248,248,248,0.25)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)]"
+          "h-10  text-xs px-2 text-beige  rounded-[5px] flex items-center justify-center bg-dark-blue shadow-[0px_0px_8px_0px_rgba(22,34,54,0.25)_inset,0px_32px_24px_-16px_rgba(246,237,221,0.40)]"
         )}
       >
         {children}

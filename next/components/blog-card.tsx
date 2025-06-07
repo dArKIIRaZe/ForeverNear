@@ -12,7 +12,7 @@ import { Article } from "@/types/types";
 export const BlogCard = ({ article, locale }: { article: Article, locale: string }) => {
   return (
     <Link
-      className="shadow-derek grid grid-cols-1 md:grid-cols-2  rounded-3xl group border border-transparent hover:border-neutral-800 w-full hover:bg-neutral-900  overflow-hidden  hover:scale-[1.02] transition duration-200"
+      className="shadow-derek grid grid-cols-1 md:grid-cols-2  rounded-3xl group border border-beige hover:border-dark-blue w-full hover:bg-dark-blue  overflow-hidden  hover:scale-[1.02] transition duration-200"
       href={`/${locale}/blog/${article.slug}`}
     >
       <div className="">
@@ -25,7 +25,7 @@ export const BlogCard = ({ article, locale }: { article: Article, locale: string
             className="h-full object-cover object-top w-full rounded-3xl"
           />
         ) : (
-          <div className="h-full flex items-center justify-center group-hover:bg-neutral-900">
+          <div className="h-full flex items-center justify-center group-hover:bg-beige">
             {/* <Logo /> */}
           </div>
         )}
