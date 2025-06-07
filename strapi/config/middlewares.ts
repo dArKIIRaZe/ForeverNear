@@ -20,5 +20,27 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-  'global::deepPopulate'
+  'global::deepPopulate',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'forevernear-media.s3.us-east-1.amazonaws.com',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'forevernear-media.s3.us-east-1.amazonaws.com',
+          ],
+        },
+      },
+    },
+  }
 ];
