@@ -19,10 +19,14 @@
       "repeatable": true,
       "component": "shared.button"
     },
-    "logo": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::logo.logo"
+    "Pic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
     }
   }
 }

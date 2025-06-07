@@ -151,7 +151,7 @@ export interface DynamicZoneHero extends Struct.ComponentSchema {
   attributes: {
     CTAs: Schema.Attribute.Component<'shared.button', true>;
     heading: Schema.Attribute.String;
-    logo: Schema.Attribute.Relation<'oneToOne', 'api::logo.logo'>;
+    Pic: Schema.Attribute.Media<'files' | 'images'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -356,11 +356,12 @@ export interface ItemsRayItems extends Struct.ComponentSchema {
 export interface MediaImage extends Struct.ComponentSchema {
   collectionName: 'components_media_images';
   info: {
-    displayName: 'Image';
+    description: '';
+    displayName: 'FullImage';
     icon: 'picture';
   };
   attributes: {
-    MediaFile: Schema.Attribute.Media<
+    Image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;

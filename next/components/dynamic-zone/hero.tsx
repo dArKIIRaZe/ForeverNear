@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import ShootingStars from "../decorations/shooting-star";
 import StarBackground from "../decorations/star-background";
-import Image from "next/image";
+import { FullImage } from "@/components/pic";
 import { Logo } from "@/components/logo";
 
 import { Heading } from "../elements/heading";
@@ -24,7 +24,10 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, image }: { heading: s
         <ShootingStars />
       </motion.div>
       <div className="flex flex-col items-center justify-center z-10">
-      <Logo locale={locale} image={logo?.image} />
+        <div className="mb-6">
+          
+          <FullImage image={image} />
+        </div>
         <Heading
           as="h1"
           className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-[#1A2A36]"
