@@ -13,7 +13,3 @@ export default ({ env }) => ({
     },
   },
 });
-AWS_ACCESS_KEY_ID=your-access-key-id
-AWS_ACCESS_SECRET=your-secret-access-key
-AWS_REGION=your-bucket-region
-AWS_BUCKET=your-bucket-name
