@@ -3,7 +3,12 @@ export default ({ env }) => ({
     secret: env("ADMIN_JWT_SECRET"),
   },
   apiToken: {
-    salt: env("jbC1jfH7RnkrH2CfWM+MF3iNNV9gtbQgsMHpJ4DT+34="),
+    salt: env("API_TOKEN_SALT"),
+  },
+  transfer: {
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT', 'IOubYmax8Y3FVkx4ZvauKS7A6EjeiiW9tuykzD7FXqY='),
+    },
   },
   flags: {
     nps: env.bool("FLAG_NPS", true),
