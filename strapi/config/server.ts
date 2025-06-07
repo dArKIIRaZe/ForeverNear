@@ -12,4 +12,7 @@ export default ({ env }) => ({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     headers: '*',
   },
+  transfer: {
+    enabled: true,
+  },
 });

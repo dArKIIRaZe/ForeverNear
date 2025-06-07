@@ -7,6 +7,7 @@ export default [
     config: {
       origin: [
         'https://forevernear-1.onrender.com',
+        'https://forevernear.onrender.com',
         'http://localhost:3000'
       ],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
