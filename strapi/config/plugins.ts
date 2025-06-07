@@ -9,7 +9,6 @@ export default ({ env }) => ({
         params: {
           Bucket: env('AWS_BUCKET'),
         },
-        acl: undefined,
       },
     },
   },
