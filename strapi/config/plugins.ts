@@ -10,6 +10,8 @@ export default ({ env }) => ({
           Bucket: env('AWS_BUCKET'),
           ACL: 'private',
         },
+        baseUrl: `https://${env('AWS_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
+        basePath: '',
       },
     },
   },
