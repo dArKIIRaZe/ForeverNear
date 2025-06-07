@@ -8,6 +8,7 @@ export default ({ env }) => ({
         region: env('AWS_REGION'),
         params: {
           Bucket: env('AWS_BUCKET'),
+          ACL: 'private',
         },
       },
     },
