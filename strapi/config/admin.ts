@@ -5,11 +5,6 @@ export default ({ env }) => ({
   apiToken: {
     salt: env("API_TOKEN_SALT"),
   },
-  transfer: {
-    token: {
-      salt: 'ckalba0et52SvidFNucrwg==',
-    },
-  },
   flags: {
     nps: env.bool("FLAG_NPS", true),
     promoteEE: env.bool("FLAG_PROMOTE_EE", true),

@@ -14,5 +14,8 @@ export default ({ env }) => ({
   },
   transfer: {
     enabled: true,
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT', 'IOubYmax8Y3FVkx4ZvauKS7A6EjeiiW9tuykzD7FXqY='),
+    },
   },
 });
