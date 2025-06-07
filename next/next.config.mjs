@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{ hostname: process.env.IMAGE_HOSTNAME || "localhost" }],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'forevernear-media.s3.eu-north-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   pageExtensions: ["ts", "tsx"],
   async redirects() {
