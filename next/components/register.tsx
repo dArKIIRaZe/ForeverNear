@@ -36,13 +36,13 @@ export const Register = () => {
         <Divider />
 
         <div className="flex flex-col sm:flex-row gap-4 w-full">
-          <button className="flex flex-1 justify-center space-x-2 items-center bg-[#F6EDDD] px-4 py-3 rounded-md text-[#1A2A36] hover:bg-[#e6ddcd] transition duration-200 shadow-lg border border-[#F6EDDD] hover:border-[#e6ddcd]">
+          <button className="flex flex-1 justify-center space-x-2 items-center bg-[#1A2A36] px-4 py-3 rounded-md text-white hover:bg-[#16202a] transition duration-200 shadow-lg border border-[#1A2A36] hover:border-[#16202a]">
             <IconBrandGithubFilled className="h-4 w-4 text-white" />
-            <span className="text-sm text-[#1A2A36]">Login with GitHub</span>
+            <span className="text-sm text-white">Login with GitHub</span>
           </button>
-          <button className="flex flex-1 justify-center space-x-2 items-center bg-[#F6EDDD] px-4 py-3 rounded-md text-[#1A2A36] hover:bg-[#e6ddcd] transition duration-200 shadow-lg border border-[#F6EDDD] hover:border-[#e6ddcd]">
+          <button className="flex flex-1 justify-center space-x-2 items-center bg-[#1A2A36] px-4 py-3 rounded-md text-white hover:bg-[#16202a] transition duration-200 shadow-lg border border-[#1A2A36] hover:border-[#16202a]">
             <IconBrandGoogleFilled className="h-4 w-4 text-white" />
-            <span className="text-sm text-[#1A2A36]">Login with Google</span>
+            <span className="text-sm text-white">Login with Google</span>
           </button>
         </div>
       
