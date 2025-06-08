@@ -14,7 +14,7 @@ export const Register = () => {
       <Container className="h-screen max-w-lg mx-auto flex flex-col items-center justify-center">
         <Logo />
         <h1 className="text-xl text-dark-blue md:text-4xl font-bold my-4">
-          Sign up for ForeverNear
+        <span className="text-sm text-dark-blue">Sign up for ForeverNear</span>
         </h1>
 
         <form className="w-full my-4">
@@ -28,8 +28,8 @@ export const Register = () => {
             placeholder="Password"
             className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-dark-blue border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
           />
-          <Button variant="muted" type="submit" className="w-full py-3 bg-[#F6EDDD] text-[#1A2A36] shadow-lg hover:bg-[#e6ddcd]">
-            <span className="text-sm text-[#1A2A36]">Sign up</span>
+          <Button variant="muted" type="submit" className="w-full py-3 bg-[#1A2A36] text-white shadow-lg hover:bg-[#e6ddcd]">
+            <span className="text-sm text-white">Sign up</span>
           </Button>
         </form>
 
