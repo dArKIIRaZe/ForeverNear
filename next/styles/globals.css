@@ -3,4 +3,22 @@
     0 0 32px 8px rgba(255, 255, 255, 0.4),
     0 0 64px 16px rgba(255, 255, 255, 0.2),
     0 0 128px 32px rgba(255, 255, 255, 0);
+}
+
+.heartbeat-animate path {
+  animation: heartbeat-draw-erase 3.5s linear infinite;
+}
+@keyframes heartbeat-draw-erase {
+  0% {
+    stroke-dashoffset: var(--heartbeat-length);
+  }
+  40% {
+    stroke-dashoffset: 0;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: calc(-1 * var(--heartbeat-length));
+  }
 } 
