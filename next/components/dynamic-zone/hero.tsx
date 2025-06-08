@@ -72,20 +72,18 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
         <ShootingStars />
       </motion.div>
       <div className="flex flex-col items-center justify-center z-10 relative drop-shadow-xl">
-        <div className="mb-6 backdrop-blur-md bg-white/40 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
-          <FullImage image={Pic} className="hero-glow rounded-xl shadow-lg" />
+        <div className="mb-6">
+          <FullImage image={Pic} className="hero-glow rounded-xl shadow-2xl" />
         </div>
-        <div className="backdrop-blur-md bg-white/40 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
-          <Heading
-            as="h1"
-            className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg"
-          >
-            <span className="hero-glow rounded-xl px-4 py-2 inline-block">{heading}</span>
-          </Heading>
-          <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
-            {sub_heading}
-          </Subheading>
-        </div>
+        <Heading
+          as="h1"
+          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+        >
+          <span className="hero-glow rounded-xl px-4 py-2 inline-block">{heading}</span>
+        </Heading>
+        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
+          {sub_heading}
+        </Subheading>
         <div className="flex space-x-4 items-center mt-8">
           {CTAs && CTAs.map((cta) => (
             <Button
