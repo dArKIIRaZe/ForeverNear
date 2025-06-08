@@ -73,11 +73,11 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
       </motion.div>
       <div className="flex flex-col items-center justify-center z-10 relative drop-shadow-xl">
         <div className="mb-6">
-          <FullImage image={Pic} />
+          <FullImage image={Pic} className="hero-glow rounded-xl border border-white shadow-lg" />
         </div>
         <Heading
           as="h1"
-          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg"
+          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg border border-white rounded-xl hero-glow"
         >
           {heading}
         </Heading>

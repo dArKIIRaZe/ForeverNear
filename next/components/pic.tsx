@@ -5,10 +5,10 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { Image as ImageType } from "@/types/types";
 
 
-export const FullImage = ({ image }: { image?: ImageType }) => {
+export const FullImage = ({ image, className }: { image?: ImageType, className?: string }) => {
   if (!image) return null;
   return (
-    <div className="flex justify-center items-center w-full z-10">
+    <div className={`flex justify-center items-center w-full z-10 ${className || ''}`}>
       <Image
         src={strapiImage(image.url)}
         alt={image.alternativeText || "Image"}
