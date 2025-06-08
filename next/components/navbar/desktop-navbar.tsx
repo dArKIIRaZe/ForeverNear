@@ -79,8 +79,14 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
       <div className="flex space-x-2 items-center">
         <LocaleSwitcher currentLocale={locale} />
 
-        {rightNavbarItems.map((item, index) => (
-          <Button key={item.text} variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} as={Link} href={`/${locale}${item.URL}`}>
+        {rightNavbarItems.map((item) => (
+          <Button
+            key={item.text}
+            variant="simple"
+            className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
+            as={Link}
+            href={`/${locale}${item.URL}`}
+          >
             {item.text}
           </Button>
         ))}
