@@ -10,11 +10,11 @@ import { Button } from "./elements/button";
 
 export const Register = () => {
   return (
-    <div className="bg-[#F6EDDD]">
+    <div className="bg-[#deddce]">
       <Container className="h-screen max-w-lg mx-auto flex flex-col items-center justify-center">
         <div className="w-full rounded-2xl bg-[#e6ddcd] shadow-2xl p-8 flex flex-col items-center">
           <Logo />
-          <h1 className="text-xl text-[#1A2A36] md:text-4xl font-bold my-4">
+          <h1 className="text-xl text-[#1A2A36] md:text-4xl font-bold my-4 whitespace-nowrap">
             Sign up for ForeverNear
           </h1>
 
