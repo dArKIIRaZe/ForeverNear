@@ -6,6 +6,9 @@
 }
 
 .heartbeat-animate path {
+  --heartbeat-length: 2000;
+  stroke-dasharray: var(--heartbeat-length);
+  stroke-dashoffset: var(--heartbeat-length);
   animation: heartbeat-draw-erase 3.5s linear infinite alternate;
 }
 @keyframes heartbeat-draw-erase {
