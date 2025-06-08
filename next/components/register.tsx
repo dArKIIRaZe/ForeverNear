@@ -10,22 +10,22 @@ import { Button } from "./elements/button";
 
 export const Register = () => {
   return (
-    <Container className="h-screen max-w-lg mx-auto flex flex-col items-center justify-center">
+    <Container className="h-screen max-w-lg mx-auto flex flex-col items-center justify-center bg-[#F6EDDD]">
       <Logo />
-      <h1 className="text-xl md:text-4xl font-bold my-4">
-        Sign up for LaunchPad
+      <h1 className="text-xl text-dark-blue md:text-4xl font-bold my-4">
+        Sign up for ForeverNear
       </h1>
 
       <form className="w-full my-4">
         <input
           type="email"
           placeholder="Email Address"
-          className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-charcoal border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
+          className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-dark-blue border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
         />
         <input
           type="password"
           placeholder="Password"
-          className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-charcoal border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
+          className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-dark-blue border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
         />
         <Button variant="muted" type="submit" className="w-full py-3">
           <span className="text-sm">Sign up</span>
@@ -35,11 +35,11 @@ export const Register = () => {
       <Divider />
 
       <div className="flex flex-col sm:flex-row gap-4 w-full">
-        <button className="flex flex-1 justify-center space-x-2 items-center bg-white px-4 py-3 rounded-md text-black hover:bg-white/80 transition duration-200 shadow-[0px_1px_0px_0px_#00000040_inset]">
+        <button className="flex flex-1 justify-center space-x-2 items-center bg-blue px-4 py-3 rounded-md text-white hover:bg-dark-blue/80 transition duration-200 shadow-[0px_1px_0px_0px_#00000040_inset]">
           <IconBrandGithubFilled className="h-4 w-4 text-black" />
           <span className="text-sm">Login with GitHub</span>
         </button>
-        <button className="flex flex-1 justify-center space-x-2 items-center bg-white px-4 py-3 rounded-md text-black hover:bg-white/80 transition duration-200 shadow-[0px_1px_0px_0px_#00000040_inset]">
+        <button className="flex flex-1 justify-center space-x-2 items-center bg-blue px-4 py-3 rounded-md text-white hover:bg-dark-blue/80 transition duration-200 shadow-[0px_1px_0px_0px_#00000040_inset]">
           <IconBrandGoogleFilled className="h-4 w-4 text-black" />
           <span className="text-sm">Login with Google</span>
         </button>
