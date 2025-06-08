@@ -78,7 +78,6 @@ const HeartbeatLine = () => {
       pathRef.current.style.strokeDashoffset = `${length}`;
       // Force reflow and re-apply animation
       pathRef.current.style.animation = 'none';
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       (pathRef.current as unknown as HTMLElement).offsetHeight;
       pathRef.current.style.animation = '';
     }
