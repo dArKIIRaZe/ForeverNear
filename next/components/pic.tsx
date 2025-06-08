@@ -12,9 +12,9 @@ export const FullImage = ({ image, className }: { image?: ImageType, className?:
       <Image
         src={strapiImage(image.url)}
         alt={image.alternativeText || "Image"}
-        width={180}
-        height={180}
-        className={className ? className : "w-full h-auto"}
+        width={270}
+        height={270}
+        className={className ? `${className} max-w-[270px]` : "w-full h-auto max-w-[270px]"}
       />
     </div>
   );
