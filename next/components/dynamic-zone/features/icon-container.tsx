@@ -10,7 +10,7 @@ export const IconContainer: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-center h-16 w-16 rounded-lg border-2 bg-dark-blue relative",
+        "flex items-center justify-center h-16 w-16 rounded-lg border-2 bg-beige relative",
         "border-beige/20",
         "shadow-[0px_0px_8px_0px_rgba(246,237,221,0.25)_inset,0px_32px_24px_-16px_rgba(246,237,221,0.40)_inset]",
         "flex-shrink-0",

@@ -21,15 +21,15 @@ export const FeatureIconContainer = ({
       >
         <div
           className={cn(
-            "bg-dark-blue rounded-[5px] h-full w-full relative z-20",
+            "bg-beige rounded-[5px] h-full w-full relative z-20",
             className
           )}
         >
           {children}
         </div>
-        <div className="absolute bottom-0 inset-x-0 bg-dark-blue opacity-50 rounded-full blur-lg h-4 w-full mx-auto z-30"></div>
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-beige to-transparent h-px w-[60%] mx-auto"></div>
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-dark-blue blur-sm to-transparent h-[8px] w-[60%] mx-auto"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-beige opacity-50 rounded-full blur-lg h-4 w-full mx-auto z-30"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-dark-blue to-transparent h-px w-[60%] mx-auto"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-beige blur-sm to-transparent h-[8px] w-[60%] mx-auto"></div>
       </div>
     </div>
   );
