@@ -14,8 +14,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
   const { addToCart } = useCart();
   
   return (
-    <div className="bg-gradient-to-b from-neutral-900 to-neutral-950  p-4 md:p-10 rounded-md">
-      <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="bg-gradient-to-b from-accent to-accent-dark p-4 md:p-10 rounded-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
           {/* <AnimatePresence initial={false} mode="popLayout"> */}
           <motion.div
@@ -48,7 +48,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
                 className={cn(
                   "h-20 w-20 rounded-xl",
                   activeThumbnail === image
-                    ? "border-2 border-neutral-200"
+                    ? "border-2 border-primary"
                     : "border-2 border-transparent"
                 )}
                 style={{
@@ -62,11 +62,11 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
-          <p className=" mb-6 bg-white text-xs px-4 py-1 rounded-full text-black w-fit">
+          <h2 className="text-2xl font-semibold mb-4 text-primary">{product.name}</h2>
+          <p className="mb-6 bg-primary text-xs px-4 py-1 rounded-full text-accent w-fit">
             ${formatNumber(product.price)}
           </p>
-          <p className="text-base font-normal mb-4 text-neutral-400">
+          <p className="text-base font-normal mb-4 text-primary-light">
             {product.description}
           </p>
 
@@ -76,28 +76,28 @@ export const SingleProduct = ({ product }: { product: Product }) => {
               <Step key={index}>{perk.text}</Step>
             ))}
           </ul>
-          <h3 className="text-sm font-medium text-neutral-400 mb-2">
+          <h3 className="text-sm font-medium text-primary-light mb-2">
             Available for
           </h3>
           <ul className="list-none flex gap-4 flex-wrap">
             {product.plans && product.plans.map((plan, index) => (
               <li
                 key={index}
-                className=" bg-neutral-800 text-sm text-white px-3 py-1 rounded-full font-medium"
+                className="bg-accent-light text-sm text-primary px-3 py-1 rounded-full font-medium"
               >
                 {plan.name}
               </li>
             ))}
           </ul>
 
-          <h3 className="text-sm font-medium text-neutral-400 mb-2 mt-8">
+          <h3 className="text-sm font-medium text-primary-light mb-2 mt-8">
             Categories
           </h3>
           <ul className="flex gap-4 flex-wrap">
             {product.categories && product.categories?.map((category, idx) => (
               <li
                 key={`category-${idx}`}
-                className=" bg-neutral-800 text-sm text-white px-3 py-1 rounded-full font-medium"
+                className="bg-accent-light text-sm text-primary px-3 py-1 rounded-full font-medium"
               >
                 {category.name}
               </li>
@@ -113,8 +113,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
 const Divider = () => {
   return (
     <div className="relative">
-      <div className="w-full h-px bg-dark-blue" />
-      <div className="w-full h-px bg-beige" />
+      <div className="w-full h-px bg-accent" />
+      <div className="w-full h-px bg-primary" />
     </div>
   );
 };
@@ -122,10 +122,10 @@ const Divider = () => {
 const Step = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex items-start justify-start gap-2 my-4">
-      <div className="h-4 w-4 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <IconCheck className="h-3 w-3 [stroke-width:4px] text-neutral-300" />
+      <div className="h-4 w-4 rounded-full bg-accent-light flex items-center justify-center flex-shrink-0 mt-0.5">
+        <IconCheck className="h-3 w-3 [stroke-width:4px] text-primary" />
       </div>
-      <div className="font-medium text-white text-sm">{children}</div>
+      <div className="font-medium text-primary text-sm">{children}</div>
     </div>
   );
 };

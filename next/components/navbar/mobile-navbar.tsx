@@ -42,26 +42,26 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }
   return (
     <div
       className={cn(
-        "flex justify-between bg-dark-blue items-center w-full rounded-md px-2.5 py-1.5 transition duration-200 text-beige",
+        "flex justify-between bg-accent items-center w-full rounded-md px-2.5 py-1.5 transition duration-200 text-primary",
         showBackground &&
-        " bg-dark-blue shadow-[0px_-2px_0px_0px_var(--dark-blue),0px_2px_0px_0px_var(--dark-blue)]"
+        " bg-accent shadow-[0px_-2px_0px_0px_var(--accent),0px_2px_0px_0px_var(--accent)]"
       )}
     >
       <Logo image={logo?.image} />
 
       <IoIosMenu
-        className="text-white h-6 w-6"
+        className="text-primary h-6 w-6"
         onClick={() => setOpen(!open)}
       />
 
       {open && (
-        <div className="fixed inset-0 bg-beige z-50 flex flex-col items-start justify-start space-y-10  pt-5  text-xl text-dark-blue  transition duration-200 hover:text-dark-blue">
+        <div className="fixed inset-0 bg-primary z-50 flex flex-col items-start justify-start space-y-10 pt-5 text-xl text-accent transition duration-200 hover:text-accent">
           <div className="flex items-center justify-between w-full px-5">
             <Logo locale={locale} image={logo?.image} />
             <div className="flex items-center space-x-2">
               <LocaleSwitcher currentLocale={locale} />
               <IoIosClose
-                className="h-8 w-8 text-white"
+                className="h-8 w-8 text-accent"
                 onClick={() => setOpen(!open)}
               />
             </div>
@@ -78,7 +78,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }
                         onClick={() => setOpen(false)}
                         className="relative max-w-[15rem] text-left text-2xl"
                       >
-                        <span className="block text-dark-blue">
+                        <span className="block text-accent">
                           {childNavItem.text}
                         </span>
                       </Link>
@@ -91,7 +91,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }
                     onClick={() => setOpen(false)}
                     className="relative"
                   >
-                    <span className="block text-[26px] text-dark-blue">
+                    <span className="block text-[26px] text-accent">
                       {navItem.text}
                     </span>
                   </Link>

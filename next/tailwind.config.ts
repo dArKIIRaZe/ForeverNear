@@ -14,12 +14,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: "#08090A",
-        lightblack: "#1C1C1C",
-        secondary: "#E6E6E6",
-        muted: "var(--neutral-200)",
-        'dark-blue': '#1A2A36',
-        'beige': '#F6EDDD',
+        primary: '#F6EDDD', // Beige
+        accent: '#1A2A36', // Dark blue
+        
+        // Complementary colors
+        'accent-light': '#2A3A46', // Lighter dark blue
+        'accent-dark': '#0A1A26', // Darker dark blue
+        'primary-light': '#FFF5E5', // Lighter beige
+        'primary-dark': '#E6DDCD', // Darker beige
+        
+        // Neutral colors
+        charcoal: '#08090A',
+        'light-black': '#1C1C1C',
+        secondary: '#E6E6E6',
+        muted: 'var(--neutral-200)',
+        
+        // Additional accent colors
+        'accent-warm': '#8B7355', // Warm brown
+        'accent-cool': '#4A6B8A', // Cool blue
       },
       boxShadow: {
         derek: `0px 0px 0px 1px rgb(0 0 0 / 0.06),

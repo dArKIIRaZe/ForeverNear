@@ -14,9 +14,9 @@ import { useScroll } from "framer-motion";
 export const Launches = ({ heading, sub_heading, launches }: { heading: string; sub_heading: string; launches: any[] }) => {
   const launchesWithDecoration = launches.map(entry => ({
     ...entry,
-    icon: <IconRocket className="h-8 w-8 text-secondary" />,
+    icon: <IconRocket className="h-8 w-8 text-accent" />,
     content: (
-      <p className="text-4xl md:text-7xl font-bold text-neutral-800">
+      <p className="text-4xl md:text-7xl font-bold text-primary">
         {entry.mission_number}
       </p>
     ),
@@ -27,7 +27,7 @@ export const Launches = ({ heading, sub_heading, launches }: { heading: string; 
     target: ref,
     offset: ["start end", "end start"],
   });
-  const backgrounds = ["var(--charcoal)", "var(--zinc-900)", "var(--charcoal)"];
+  const backgrounds = ["var(--primary)", "var(--accent)", "var(--primary)"];
 
   const [gradient, setGradient] = useState(backgrounds[0]);
 
@@ -58,7 +58,7 @@ export const Launches = ({ heading, sub_heading, launches }: { heading: string; 
     >
       <div className="px-6">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconRocket className="h-6 w-6 text-white" />
+          <IconRocket className="h-6 w-6 text-accent" />
         </FeatureIconContainer>
         <Heading className="mt-4">{heading}</Heading>
         <Subheading>

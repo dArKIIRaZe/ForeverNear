@@ -5,8 +5,8 @@ import { Link } from "next-view-transitions";
 export const Footer = async ({ data, locale }: { data: any, locale: string }) => {
   return (
     <div className="relative">
-      <div className="border-t border-beige px-8 pt-20 pb-32 relative bg-dark-blue">
-        <div className="max-w-7xl mx-auto text-sm text-beige flex sm:flex-row flex-col justify-between items-start ">
+      <div className="border-t border-primary px-8 pt-20 pb-32 relative bg-accent">
+        <div className="max-w-7xl mx-auto text-sm text-primary flex sm:flex-row flex-col justify-between items-start ">
           <div>
             <div className="mr-4  md:flex mb-4">
               {data?.logo?.image && (
@@ -17,40 +17,40 @@ export const Footer = async ({ data, locale }: { data: any, locale: string }) =>
             <div className="mt-4">{data?.copyright}</div>
             <div className="mt-10">
               Designed and Developed by{" "}
-              <a className="text-dark-blue underline" href="https://aceternity.com">
+              <a className="text-primary-light hover:text-primary underline" href="https://aceternity.com">
                 Aceternity
               </a>
               {" "}&{" "}
-              <a className="text-dark-blue underline" href="https://strapi.io">
+              <a className="text-primary-light hover:text-primary underline" href="https://strapi.io">
                 Strapi
               </a>
             </div>
             <div className="mt-2">
               built with{" "}
-              <a className="text-dark-blue underline" href="https://strapi.io">
+              <a className="text-primary-light hover:text-primary underline" href="https://strapi.io">
                 Strapi
               </a>
               ,{" "}
-              <a className="text-dark-blue underline" href="https://nextjs.org">
+              <a className="text-primary-light hover:text-primary underline" href="https://nextjs.org">
                 Next.js
               </a>
               ,{" "}
               <a
-                className="text-dark-blue underline"
+                className="text-primary-light hover:text-primary underline"
                 href="https://tailwindcss.com"
               >
                 Tailwind CSS
               </a>
               ,{" "}
               <a
-                className="text-dark-blue underline"
+                className="text-primary-light hover:text-primary underline"
                 href="https://framer.com/motion"
               >
                 Motion Animation Lib
               </a>
               , and{" "}
               <a
-                className="text-dark-blue underline"
+                className="text-primary-light hover:text-primary underline"
                 href="https://ui.aceternity.com"
               >
                 Aceternity UI
@@ -73,7 +73,7 @@ const LinkSection = ({ links, locale }: { links: { text: string; URL: never | st
     {links.map((link) => (
       <Link
         key={link.text}
-        className="transition-colors hover:text-dark-blue text-beige text-xs sm:text-sm"
+        className="transition-colors hover:text-primary-light text-primary text-xs sm:text-sm"
         href={`${link.URL.startsWith('http') ? '' : `/${locale}`}${link.URL}`}
       >
         {link.text}

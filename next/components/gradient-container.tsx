@@ -40,7 +40,7 @@ export const GradientContainer = ({
       ref={ref}
       style={
         {
-          "--top": "rgba(97, 106, 115, .12)",
+          "--top": "rgba(26, 42, 54, 0.12)",
           "--bottom": "transparent",
           "--conic-size": "600px",
         } as CSSProperties
@@ -55,7 +55,7 @@ export const GradientContainer = ({
         after:inset-0
         after:bg-gradient-to-b
         after:from-transparent
-        after:to-[var(--charcoal)]
+        after:to-[var(--accent)]
         after:opacity-100
         `}
         style={{

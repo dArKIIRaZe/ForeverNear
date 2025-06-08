@@ -12,7 +12,7 @@ export const FeatureIconContainer = ({
     <div className=" [perspective:400px] [transform-style:preserve-3d]">
       <div
         className={cn(
-          "h-14 w-14 p-[4px] rounded-md bg-gradient-to-b from-beige to-beige mx-auto relative"
+          "h-14 w-14 p-[4px] rounded-md bg-gradient-to-b from-accent to-accent mx-auto relative"
         )}
         style={{
           transform: "rotateX(25deg)",
@@ -21,15 +21,15 @@ export const FeatureIconContainer = ({
       >
         <div
           className={cn(
-            "bg-beige rounded-[5px] h-full w-full relative z-20",
+            "bg-accent rounded-[5px] h-full w-full relative z-20",
             className
           )}
         >
           {children}
         </div>
-        <div className="absolute bottom-0 inset-x-0 bg-beige opacity-50 rounded-full blur-lg h-4 w-full mx-auto z-30"></div>
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-dark-blue to-transparent h-px w-[60%] mx-auto"></div>
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-beige blur-sm to-transparent h-[8px] w-[60%] mx-auto"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-accent opacity-50 rounded-full blur-lg h-4 w-full mx-auto z-30"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-primary to-transparent h-px w-[60%] mx-auto"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-transparent via-accent blur-sm to-transparent h-[8px] w-[60%] mx-auto"></div>
       </div>
     </div>
   );

@@ -36,9 +36,9 @@ export const Brands = ({ heading, sub_heading, logos }: { heading: string, sub_h
   }, [activeLogoSet]); // Depend on activeLogoSet to trigger flip every time it changes
 
   return (
-    <div className="relative z-20 py-10 md:py-40 bg-dark-blue">
-      <Heading className="pt-4 text-beige">{heading}</Heading>
-      <Subheading className="max-w-3xl mx-auto text-beige">
+    <div className="relative z-20 py-10 md:py-40 bg-primary">
+      <Heading className="pt-4 text-accent">{heading}</Heading>
+      <Subheading className="max-w-3xl mx-auto text-accent">
         {sub_heading}
       </Subheading>
 

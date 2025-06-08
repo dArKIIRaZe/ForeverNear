@@ -11,7 +11,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "p-8 rounded-3xl border border-beige/30 bg-beige/30 shadow-[2px_4px_16px_0px_rgba(246,237,221,0.06)_inset] group",
+        "p-8 rounded-3xl border border-accent/30 bg-accent/30 shadow-[2px_4px_16px_0px_rgba(246,237,221,0.06)_inset] group",
         className
       )}
     >
@@ -28,7 +28,7 @@ export const CardTitle = ({
   className?: string;
 }) => {
   return (
-    <h3 className={cn("text-lg font-semibold text-white py-2", className)}>
+    <h3 className={cn("text-lg font-semibold text-primary py-2", className)}>
       {children}
     </h3>
   );
@@ -43,7 +43,7 @@ export const CardDescription = ({
 }) => {
   return (
     <p
-      className={cn("text-sm font-normal text-neutral-400 max-w-sm", className)}
+      className={cn("text-sm font-normal text-primary-light max-w-sm", className)}
     >
       {children}
     </p>
@@ -65,7 +65,7 @@ export const CardSkeletonContainer = ({
         "h-[20rem] rounded-xl z-40",
         className,
         showGradient &&
-          " bg-[rgba(40,40,40,0.30)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
+          " bg-accent/30 [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
       )}
     >
       {children}

@@ -22,7 +22,7 @@ const World = dynamic(
 export function SkeletonOne() {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#f0f2f2",
+    globeColor: "#283978",
     showAtmosphere: true,
     atmosphereColor: "#a6b9bf",
     atmosphereAltitude: 0.1,

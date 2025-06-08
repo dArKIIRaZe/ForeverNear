@@ -31,7 +31,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
   };
 
   return (
-    <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center bg-dark-blue">
+    <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center bg-primary">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
@@ -59,7 +59,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
           Your browser does not support the video tag.
         </video>
         {/* Overlay to ensure content visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-beige/60 via-beige/20 to-beige/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/60 via-accent/20 to-accent/20" />
       </div>
 
       <motion.div
@@ -77,11 +77,11 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
         </div>
         <Heading
           as="h1"
-          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-beige drop-shadow-lg"
+          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg"
         >
           {heading}
         </Heading>
-        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-beige max-w-2xl mx-auto drop-shadow-md">
+        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
           {sub_heading}
         </Subheading>
         <div className="flex space-x-4 items-center mt-8">
@@ -90,7 +90,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
               key={cta?.id}
               as={Link}
               href={`/${locale}${cta.URL}`}
-              className="bg-beige/90 backdrop-blur-sm text-dark-blue hover:bg-beige transition-all duration-300"
+              className="bg-accent/90 backdrop-blur-sm text-primary hover:bg-accent transition-all duration-300"
               {...(cta.variant && { variant: cta.variant })}
             >
               {cta.text}
@@ -98,7 +98,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
           ))}
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-beige/80 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-accent/80 to-transparent" />
     </div>
   );
 };
