@@ -6,19 +6,13 @@
 }
 
 .heartbeat-animate path {
-  animation: heartbeat-draw-erase 3.5s linear infinite;
+  animation: heartbeat-draw-erase 3.5s linear infinite alternate;
 }
 @keyframes heartbeat-draw-erase {
-  0% {
+  from {
     stroke-dashoffset: var(--heartbeat-length);
   }
-  40% {
+  to {
     stroke-dashoffset: 0;
-  }
-  60% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: calc(-1 * var(--heartbeat-length));
   }
 } 
