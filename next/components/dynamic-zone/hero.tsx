@@ -41,14 +41,14 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
           muted
           playsInline
           onError={handleVideoError}
-          className="absolute min-w-full min-h-full object-cover"
+          className="absolute min-w-full min-h-full object-cover blur-sm"
           style={{
             position: 'absolute',
             width: '100%',
             height: '100%',
             objectFit: 'cover',
             zIndex: 0,
-            filter: 'brightness(0.8)'
+            filter: 'brightness(0.7) blur(6px)'
           }}
         >
           <source 
@@ -59,7 +59,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
           Your browser does not support the video tag.
         </video>
         {/* Overlay to ensure content visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/60 via-accent/20 to-accent/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/70 via-accent/30 to-accent/30" />
       </div>
 
       <motion.div
@@ -75,15 +75,17 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
         <div className="mb-6">
           <FullImage image={Pic} className="hero-glow rounded-xl border border-white shadow-lg" />
         </div>
-        <Heading
-          as="h1"
-          className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg border border-white rounded-xl hero-glow"
-        >
-          {heading}
-        </Heading>
-        <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
-          {sub_heading}
-        </Subheading>
+        <div className="backdrop-blur-md bg-black/30 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
+          <Heading
+            as="h1"
+            className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg"
+          >
+            <span className="hero-glow border border-white rounded-xl px-4 py-2 inline-block">{heading}</span>
+          </Heading>
+          <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
+            {sub_heading}
+          </Subheading>
+        </div>
         <div className="flex space-x-4 items-center mt-8">
           {CTAs && CTAs.map((cta) => (
             <Button
