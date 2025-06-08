@@ -9,13 +9,19 @@
   --heartbeat-length: 2000;
   stroke-dasharray: var(--heartbeat-length);
   stroke-dashoffset: var(--heartbeat-length);
-  animation: heartbeat-draw-erase 3.5s linear infinite alternate;
+  animation: heartbeat-draw-erase 3.5s linear infinite;
 }
 @keyframes heartbeat-draw-erase {
-  from {
+  0% {
     stroke-dashoffset: var(--heartbeat-length);
   }
-  to {
+  40% {
     stroke-dashoffset: 0;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--heartbeat-length);
   }
 } 
