@@ -59,7 +59,7 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
           Your browser does not support the video tag.
         </video>
         {/* Overlay to ensure content visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/70 via-accent/30 to-accent/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/20" />
       </div>
 
       <motion.div
@@ -72,15 +72,15 @@ export const Hero = ({ heading, sub_heading, CTAs, locale, Pic , BackgroundVideo
         <ShootingStars />
       </motion.div>
       <div className="flex flex-col items-center justify-center z-10 relative drop-shadow-xl">
-        <div className="mb-6">
-          <FullImage image={Pic} className="hero-glow rounded-xl border border-white shadow-lg" />
+        <div className="mb-6 backdrop-blur-md bg-white/40 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
+          <FullImage image={Pic} className="hero-glow rounded-xl shadow-lg" />
         </div>
-        <div className="backdrop-blur-md bg-black/30 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
+        <div className="backdrop-blur-md bg-white/40 rounded-2xl px-6 py-4 flex flex-col items-center w-fit mx-auto">
           <Heading
             as="h1"
             className="text-4xl md:text-4xl lg:text-7xl font-bold max-w-4xl mx-auto text-center mt-2 text-accent drop-shadow-lg"
           >
-            <span className="hero-glow border border-white rounded-xl px-4 py-2 inline-block">{heading}</span>
+            <span className="hero-glow rounded-xl px-4 py-2 inline-block">{heading}</span>
           </Heading>
           <Subheading className="text-center mt-4 md:mt-6 text-lg md:text-2xl text-accent max-w-2xl mx-auto drop-shadow-md">
             {sub_heading}
