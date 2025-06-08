@@ -21,7 +21,7 @@ export const Logo = ({ image, locale }: { image?: Image, locale?: string }) => {
           className="h-10 w-10 rounded-xl mr-2 bg-dark-blue"
         />
 
-        <span className="text-dark-blue font-bold">LaunchPad</span>
+        <span className="text-dark-blue font-bold">ForeverNear</span>
       </Link>
     );
   }
