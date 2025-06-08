@@ -68,19 +68,21 @@ const Divider = () => {
 
 const HeartbeatLine = () => {
   const pathRef = useRef<SVGPathElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (pathRef.current) {
+    if (pathRef.current && svgRef.current) {
       const length = pathRef.current.getTotalLength();
       pathRef.current.style.strokeDasharray = `${length}`;
       pathRef.current.style.strokeDashoffset = `${length}`;
-      pathRef.current.style.setProperty('--heartbeat-length', `${length}`);
+      svgRef.current.style.setProperty('--heartbeat-length', `${length}`);
     }
   }, []);
 
   return (
     <div className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none z-0">
       <svg
+        ref={svgRef}
         className="heartbeat-animate"
         width="2000" height="128" viewBox="0 0 2000 128" fill="none"
         xmlns="http://www.w3.org/2000/svg"
