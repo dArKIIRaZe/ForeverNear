@@ -71,15 +71,11 @@ const HeartbeatLine = () => {
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (pathRef.current && svgRef.current) {
+    if (pathRef.current) {
       const length = pathRef.current.getTotalLength();
-      svgRef.current.style.setProperty('--heartbeat-length', `${length}`);
+      pathRef.current.style.setProperty('--heartbeat-length', `${length}`);
       pathRef.current.style.strokeDasharray = `${length}`;
       pathRef.current.style.strokeDashoffset = `${length}`;
-      // Force reflow and re-apply animation
-      pathRef.current.style.animation = 'none';
-      (pathRef.current as unknown as HTMLElement).offsetHeight;
-      pathRef.current.style.animation = '';
     }
   }, []);
 

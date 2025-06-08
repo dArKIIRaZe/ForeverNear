@@ -6,14 +6,17 @@
 }
 
 .heartbeat-animate path {
-  --heartbeat-length: 2000;
-  stroke-dasharray: var(--heartbeat-length);
-  stroke-dashoffset: var(--heartbeat-length);
-  animation: heartbeat-draw-erase 3.5s linear infinite;
+  stroke: #1A2A36;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: var(--heartbeat-length, 2000);
+  stroke-dashoffset: var(--heartbeat-length, 2000);
+  animation: dash 2s linear infinite;
 }
-@keyframes heartbeat-draw-erase {
+
+@keyframes dash {
   0% {
-    stroke-dashoffset: var(--heartbeat-length);
+    stroke-dashoffset: var(--heartbeat-length, 2000);
   }
   40% {
     stroke-dashoffset: 0;
@@ -22,6 +25,6 @@
     stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: var(--heartbeat-length);
+    stroke-dashoffset: var(--heartbeat-length, 2000);
   }
 } 
