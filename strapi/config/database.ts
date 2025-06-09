@@ -10,16 +10,6 @@ export default ({ env }) => {
         connection: {
           connectionString: env('DATABASE_URL'),
           ssl: { rejectUnauthorized: false },
-          schema: 'public',
-        },
-        acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
-      },
-      users: {
-        client: 'postgres',
-        connection: {
-          connectionString: env('DATABASE_URL'),
-          ssl: { rejectUnauthorized: false },
-          schema: 'user-db',
         },
         acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
       },
@@ -30,13 +20,6 @@ export default ({ env }) => {
         client: 'sqlite',
         connection: {
           filename: path.join(__dirname, '..', '..', env('DATABASE_FILENAME', '.tmp/data.db')),
-        },
-        useNullAsDefault: true,
-      },
-      users: {
-        client: 'sqlite',
-        connection: {
-          filename: path.join(__dirname, '..', '..', env('USER_DATABASE_FILENAME', '.tmp/user-db.db')),
         },
         useNullAsDefault: true,
       },
