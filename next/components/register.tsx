@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Container } from "./container";
 import { Logo } from "./logo";
 import {
@@ -7,8 +7,40 @@ import {
   IconBrandGoogleFilled,
 } from "@tabler/icons-react";
 import { Button } from "./elements/button";
+import { registerUser, loginUser } from "../lib/strapi/auth";
 
 export const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      // Try to login first
+      const loginData = await loginUser(email, password);
+      // If login successful, store the token and redirect
+      localStorage.setItem('token', loginData.jwt);
+      window.location.href = '/dashboard'; // Redirect to dashboard
+    } catch (loginError) {
+      // If login fails, try to register
+      try {
+        const registerData = await registerUser(email, password);
+        // If registration successful, store the token and redirect
+        localStorage.setItem('token', registerData.jwt);
+        window.location.href = '/dashboard'; // Redirect to dashboard
+      } catch (registerError) {
+        setError(registerError instanceof Error ? registerError.message : 'Registration failed');
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="bg-[#deddce] relative overflow-hidden min-h-screen">
       {/* Heartbeat SVG Animation */}
@@ -20,19 +52,39 @@ export const Register = () => {
             Sign up for ForeverNear
           </h1>
 
-          <form className="w-full my-4">
+          {error && (
+            <div className="w-full mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
+          <form className="w-full my-4" onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-dark-blue border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
+              required
             />
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="h-10 pl-4 w-full mb-4 rounded-md text-sm bg-dark-blue border border-neutral-800 text-white placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
+              required
+              minLength={6}
             />
-            <Button variant="muted" type="submit" className="w-full py-3 bg-[#1A2A36] text-white shadow-lg hover:bg-[#16202a]">
-              <span className="text-sm text-white">Sign up</span>
+            <Button 
+              variant="muted" 
+              type="submit" 
+              className="w-full py-3 bg-[#1A2A36] text-white shadow-lg hover:bg-[#16202a]"
+              disabled={isLoading}
+            >
+              <span className="text-sm text-white">
+                {isLoading ? 'Loading...' : 'Sign up'}
+              </span>
             </Button>
           </form>
 

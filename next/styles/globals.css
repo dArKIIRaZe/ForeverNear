@@ -7,7 +7,7 @@
 
 .heartbeat-animate path {
   stroke: #1A2A36;
-  stroke-width: 4;
+  stroke-width: 6;
   fill: none;
   stroke-dasharray: var(--heartbeat-length, 2000);
   stroke-dashoffset: var(--heartbeat-length, 2000);
