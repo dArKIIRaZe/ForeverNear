@@ -45,7 +45,17 @@ export const UploadVideoForm = () => {
         throw new Error('Video upload failed.');
       }
 
-      // Step 2: Save metadata to user-videos
+      // Step 2: Get the current user ID from Strapi
+      const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const user = await userRes.json();
+      if (!user.id) throw new Error("Unable to get current user info.");
+
+      // Step 3: Save metadata + user relation to user-videos
       const saveRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos`, {
         method: 'POST',
         headers: {
@@ -57,6 +67,7 @@ export const UploadVideoForm = () => {
             video_name: videoUrl,
             title,
             description,
+            user: user.id,
           },
         }),
       });
