@@ -1,3 +1,18 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Container } from './container';
+import { Button } from './elements/button';
+import { Logo } from './logo';
+
+export const UploadVideoForm = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
 const handleUpload = async (e: React.FormEvent) => {
   e.preventDefault();
   setUploading(true);
