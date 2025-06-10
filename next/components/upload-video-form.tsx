@@ -21,26 +21,53 @@ export const UploadVideoForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('You must be logged in to upload.');
-      }
+      if (!token) throw new Error('You must be logged in to upload.');
 
-      const formData = new FormData();
-      formData.append('files.video', file!);
-      formData.append('data', JSON.stringify({
-        title,
-        description,
-      }));
+      if (!file) throw new Error('Please select a video file.');
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos`, {
+      // Step 1: Upload file to S3 via Strapi
+      const uploadData = new FormData();
+      uploadData.append('files', file);
+
+      const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: formData
+        body: uploadData,
       });
 
-      if (!res.ok) throw new Error('Upload failed.');
+      const uploaded = await uploadRes.json();
+      const videoUrl = uploaded[0]?.url;
+
+      if (!uploadRes.ok || !videoUrl) {
+        console.error('Upload failed:', uploaded);
+        throw new Error('Video upload failed.');
+      }
+
+      // Step 2: Save metadata to user-videos
+      const saveRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            video_name: videoUrl,
+            title,
+            description,
+          },
+        }),
+      });
+
+      const result = await saveRes.json();
+
+      if (!saveRes.ok) {
+        console.error('Metadata save failed:', result);
+        throw new Error('Failed to save video metadata.');
+      }
+
       setSuccess('Upload complete!');
       setTitle('');
       setDescription('');
