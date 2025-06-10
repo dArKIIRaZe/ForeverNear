@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function UploadPage() {
+export default function UploadForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<File | null>(null);
@@ -14,13 +14,8 @@ export default function UploadPage() {
     e.preventDefault();
 
     const token = localStorage.getItem('token');
-    if (!token) {
-      alert('You must be logged in.');
-      return;
-    }
-
-    if (!file || !title) {
-      alert('Title and video file are required.');
+    if (!token || !file || !title) {
+      alert('Missing required fields or login.');
       return;
     }
 
@@ -31,22 +26,21 @@ export default function UploadPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
           data: {
             title,
             description,
             video_name: file.name,
-          },
-        }),
+          }
+        })
       });
 
       if (!res.ok) throw new Error('Upload failed');
 
       alert('Upload successful!');
       router.push('/watch');
-
     } catch (err) {
       console.error(err);
       alert('Something went wrong.');
@@ -56,35 +50,32 @@ export default function UploadPage() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Upload Your Video</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Video title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        /><br /><br />
+    <form onSubmit={handleSubmit} style={{ padding: '1rem' }}>
+      <input
+        type="text"
+        placeholder="Video title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      /><br /><br />
 
-        <textarea
-          placeholder="Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={4}
-        /><br /><br />
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        rows={4}
+      /><br /><br />
 
-        <input
-          type="file"
-          accept="video/*"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          required
-        /><br /><br />
+      <input
+        type="file"
+        accept="video/*"
+        onChange={(e) => setFile(e.target.files?.[0] || null)}
+        required
+      /><br /><br />
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Uploading...' : 'Submit'}
-        </button>
-      </form>
-    </div>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Uploading...' : 'Upload'}
+      </button>
+    </form>
   );
 }
