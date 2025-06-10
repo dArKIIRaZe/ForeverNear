@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_videos",
+  "info": {
+    "singularName": "user-video",
+    "pluralName": "user-videos",
+    "displayName": "user_videos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_videos"
+    },
+    "video_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3
+    },
+    "description": {
+      "type": "richtext",
+      "maxLength": 1000
+    }
+  }
+}
