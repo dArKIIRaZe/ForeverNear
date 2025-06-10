@@ -4,7 +4,8 @@
   "info": {
     "singularName": "user-video",
     "pluralName": "user-videos",
-    "displayName": "user_videos"
+    "displayName": "user_videos",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +28,9 @@
     "description": {
       "type": "richtext",
       "maxLength": 1000
+    },
+    "user_email": {
+      "type": "string"
     }
   }
 }

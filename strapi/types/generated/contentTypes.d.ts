@@ -952,6 +952,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
 export interface ApiUserVideoUserVideo extends Struct.CollectionTypeSchema {
   collectionName: 'user_videos';
   info: {
+    description: '';
     displayName: 'user_videos';
     pluralName: 'user-videos';
     singularName: 'user-video';
@@ -986,6 +987,7 @@ export interface ApiUserVideoUserVideo extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    user_email: Schema.Attribute.String;
     video_name: Schema.Attribute.String;
   };
 }
