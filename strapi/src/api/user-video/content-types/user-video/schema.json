@@ -11,12 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "user_videos"
-    },
     "video_name": {
       "type": "string"
     },

@@ -64,12 +64,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "user_videos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::user-video.user-video",
-      "mappedBy": "user"
     }
   }
 }
