@@ -699,6 +699,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.form-next-to-section',
         'dynamic-zone.faq',
         'media.image',
+        'dynamic-zone.upload-video',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

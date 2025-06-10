@@ -54,7 +54,8 @@
         "dynamic-zone.cta",
         "dynamic-zone.form-next-to-section",
         "dynamic-zone.faq",
-        "media.image"
+        "media.image",
+        "dynamic-zone.upload-video"
       ]
     }
   }

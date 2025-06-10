@@ -243,6 +243,29 @@ export interface DynamicZoneTestimonials extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneUploadVideo extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_upload_videos';
+  info: {
+    displayName: 'Upload Video';
+    icon: 'play';
+  };
+  attributes: {
+    Description: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 3;
+      }>;
+    video: Schema.Attribute.Media<'files' | 'videos'> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface GlobalFooter extends Struct.ComponentSchema {
   collectionName: 'components_global_footers';
   info: {
@@ -544,6 +567,7 @@ declare module '@strapi/strapi' {
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
+      'dynamic-zone.upload-video': DynamicZoneUploadVideo;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;
       'items.graph-card-top-items': ItemsGraphCardTopItems;
