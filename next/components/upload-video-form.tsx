@@ -52,8 +52,7 @@ export const UploadVideoForm = () => {
         })
       });
       
-      const res = await fetch(...);
-      const responseData = await res.json();
+      const responseData = await saveRes.json();
       console.log('Upload error:', responseData);
 
       if (!saveRes.ok) throw new Error('Failed to save video metadata.');
