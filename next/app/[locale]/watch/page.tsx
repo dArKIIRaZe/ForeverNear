@@ -8,6 +8,7 @@ export default function WatchPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -22,18 +23,19 @@ export default function WatchPage() {
         if (!user.id || !user.email) throw new Error('Unable to get user info');
 
         setUserEmail(user.email);
+        setUserId(user.id);
 
-        const videoRes = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&filters[user_email][$eq]=${encodeURIComponent(user.email)}&sort=createdAt:desc`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&filters[user_email][$eq]=${encodeURIComponent(user.email)}&sort=createdAt:desc`;
+
+        const videoRes = await fetch(queryURL, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         const data = await videoRes.json();
         setVideos(data.data || []);
       } catch (err: any) {
-        console.error(err);
+        console.error('WATCH ERROR:', err);
         setError(err.message || 'Error loading videos');
+        setVideos([]);
       } finally {
         setLoading(false);
       }
@@ -45,7 +47,13 @@ export default function WatchPage() {
   return (
     <div className="bg-[#f7f3eb] min-h-screen">
       <Container className="pt-24 pb-12 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-[#1A2A36] mb-4">Your Memories</h1>
+        <h1 className="text-3xl font-bold text-[#1A2A36] mb-2">Your Memories</h1>
+
+        {userId && userEmail && (
+          <p className="text-sm text-gray-500 mb-6">
+            Logged in as: <strong>{userEmail}</strong> (ID: {userId})
+          </p>
+        )}
 
         {error && <p className="text-red-600 mb-4">{error}</p>}
         {loading && <p className="text-gray-500 mb-4">Loading...</p>}
