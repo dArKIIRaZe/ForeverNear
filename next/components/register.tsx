@@ -49,7 +49,7 @@ export const Register = () => {
         <div className="w-full rounded-2xl bg-[#e6ddcd] shadow-2xl p-8 flex flex-col items-center">
           <Logo />
           <h1 className="text-xl text-[#1A2A36] md:text-4xl font-bold my-4 whitespace-nowrap">
-            Sign up for ForeverNear
+            Login or Sign Up
           </h1>
 
           {error && (
@@ -83,7 +83,7 @@ export const Register = () => {
               disabled={isLoading}
             >
               <span className="text-sm text-white">
-                {isLoading ? 'Loading...' : 'Sign up'}
+                {isLoading ? 'Loading...' : 'Log in or Sign up'}
               </span>
             </Button>
           </form>

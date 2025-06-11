@@ -82,7 +82,7 @@ export default function WatchPage() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {videos.map((video: any) => (
-            <div key={video.id} className="bg-white shadow-md rounded-lg p-4">
+            <div key={video.id} className="bg-[#e6ddcd] shadow-md rounded-lg p-4 text-[#1A2A36]">
               <h2 className="text-xl font-semibold mb-2">{video.title}</h2>
               <p className="text-sm text-gray-600 mb-2">{video.description}</p>
               <video
