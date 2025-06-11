@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
 import { Button } from "@/components/elements/button";
@@ -30,6 +30,25 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+    if (token) {
+      setUserEmail(localStorage.getItem("userEmail"));
+    } else {
+      setUserEmail(null);
+    }
+    const handler = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+      setUserEmail(token ? localStorage.getItem("userEmail") : null);
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 100) {
@@ -100,17 +119,55 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }
             ))}
           </div>
           <div className="flex flex-row w-full items-start gap-2.5  px-8 py-4 ">
-            {rightNavbarItems.map((item) => (
-              <Button
-                key={item.text}
-                variant="simple"
-                className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
-                as={Link}
-                href={`/${locale}${item.URL}`}
-              >
-                {item.text}
-              </Button>
-            ))}
+            {isLoggedIn && userEmail ? (
+              <span className="text-[#F6EDDD] font-semibold px-2">{userEmail}</span>
+            ) : null}
+            {rightNavbarItems
+              .filter(item => {
+                if (
+                  isLoggedIn &&
+                  item.text.toLowerCase().replace(/\s/g, "") === "login"
+                ) return false;
+                return true;
+              })
+              .map(item => {
+                if (isLoggedIn && item.text.toLowerCase() === "sign up") {
+                  return (
+                    <Button
+                      key="logout"
+                      variant="simple"
+                      className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("userEmail");
+                        setIsLoggedIn(false);
+                        setUserEmail(null);
+                        window.location.href = "/sign-up";
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  );
+                }
+                if (
+                  isLoggedIn &&
+                  item.text.toLowerCase().replace(/\s/g, "") === "login"
+                ) {
+                  return null;
+                }
+                return (
+                  <Button
+                    key={item.text}
+                    variant="simple"
+                    className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
+                    as={Link}
+                    href={`/${locale}${item.URL}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.text}
+                  </Button>
+                );
+              })}
           </div>
         </div>
       )}
