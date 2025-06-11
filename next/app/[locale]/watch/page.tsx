@@ -11,35 +11,33 @@ export default function WatchPage() {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) throw new Error('Not logged in');
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('Not logged in');
 
-        const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const user = await userRes.json();
-        if (!user.id || !user.email) throw new Error('Unable to get user info');
-
-        setUserEmail(user.email);
-
-        const videoRes = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&sort=createdAt:desc`,
-          //`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&filters[user_email][$eq]=${encodeURIComponent(user.email)}&sort=createdAt:desc`,
-
-          {
+            const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
             headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        const data = await videoRes.json();
-        setVideos(data.data || []);
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || 'Error loading videos');
-      } finally {
-        setLoading(false);
-      }
+            });
+            const user = await userRes.json();
+            if (!user.id || !user.email) throw new Error('Unable to get user info');
+
+            setUserEmail(user.email);
+
+            // ✅ Log URL you're about to fetch
+            const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&filters[user_email][$eq]=${encodeURIComponent(user.email)}&sort=createdAt:desc`;
+
+            console.log('Fetching videos from:', queryURL);
+
+            const videoRes = await fetch(queryURL, {
+            headers: { Authorization: `Bearer ${token}` },
+            });
+            const data = await videoRes.json();
+            setVideos(data.data || []);
+        } catch (err) {
+            // ...
+        }
     };
+
 
     fetchVideos();
   }, []);
