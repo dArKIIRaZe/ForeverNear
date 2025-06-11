@@ -52,7 +52,8 @@ export default function WatchPage() {
         {loading && <p>Loading...</p>}
 
         {!loading && videos.length === 0 && (
-          <p className="text-gray-600">You haven't uploaded any videos yet.</p>
+          <p className="text-gray-600">You haven&apos;t uploaded any videos yet.</p>
+
         )}
 
         <div className="grid md:grid-cols-2 gap-6">
