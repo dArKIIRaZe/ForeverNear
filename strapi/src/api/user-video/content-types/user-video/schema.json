@@ -25,6 +25,9 @@
     },
     "user_email": {
       "type": "string"
+    },
+    "user_id": {
+      "type": "integer"
     }
   }
 }

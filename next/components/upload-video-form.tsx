@@ -68,6 +68,7 @@ export const UploadVideoForm = () => {
             title,
             description,
             user_email: user.email,
+            user_id: user.id,
           },
         }),
       });

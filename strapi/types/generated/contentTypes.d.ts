@@ -984,6 +984,7 @@ export interface ApiUserVideoUserVideo extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     user_email: Schema.Attribute.String;
+    user_id: Schema.Attribute.Integer;
     video_name: Schema.Attribute.String;
   };
 }
