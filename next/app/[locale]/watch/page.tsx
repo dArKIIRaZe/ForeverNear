@@ -25,7 +25,7 @@ export default function WatchPage() {
         setUserEmail(user.email);
         setUserId(user.id);
 
-        const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_id][$eq]=${user.id}&sort=createdAt:desc`;
+        const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?filters[user_email][$eq]=${encodeURIComponent(user.email)}&sort=createdAt:desc`;
 
         const videoRes = await fetch(queryURL, {
           headers: { Authorization: `Bearer ${token}` },
