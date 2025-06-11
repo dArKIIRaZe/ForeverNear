@@ -102,7 +102,10 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
         ) : null}
         {rightNavbarItems
           .filter(item => {
-            if (isLoggedIn && (item.text.toLowerCase() === "login")) return false;
+            if (
+              isLoggedIn &&
+              item.text.toLowerCase().replace(/\s/g, "") === "login"
+            ) return false;
             return true;
           })
           .map(item => {
