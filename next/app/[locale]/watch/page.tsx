@@ -28,27 +28,24 @@ export default function WatchPage() {
         // More explicit query parameters
         const queryParams = {
           'filters[user_email][$eq]': user.email,
+          'filters[user_id][$eq]': user.id,
           'sort': 'createdAt:desc',
           'populate': '*'
         };
         
         const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?${new URLSearchParams(queryParams)}`;
 
-        console.log('Fetching videos with URL:', queryURL);
-        console.log('User email:', user.email);
 
         const videoRes = await fetch(queryURL, {
           headers: { Authorization: `Bearer ${token}` },
         });
         
         if (videoRes.status === 204) {
-          console.log('No videos found for user:', user.email);
           setVideos([]);
         } else if (!videoRes.ok) {
           throw new Error(`Failed to fetch videos: ${videoRes.status} ${videoRes.statusText}`);
         } else {
           const data = await videoRes.json();
-          console.log('Fetched videos:', data);
           setVideos(data.data || []);
         }
       } catch (err: any) {
