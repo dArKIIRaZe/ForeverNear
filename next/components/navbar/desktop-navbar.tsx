@@ -33,10 +33,21 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
 
   const [showBackground, setShowBackground] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-    const handler = () => setIsLoggedIn(!!localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+    if (token) {
+      setUserEmail(localStorage.getItem("userEmail"));
+    } else {
+      setUserEmail(null);
+    }
+    const handler = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+      setUserEmail(token ? localStorage.getItem("userEmail") : null);
+    };
     window.addEventListener("storage", handler);
     return () => window.removeEventListener("storage", handler);
   }, []);
@@ -86,10 +97,12 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
       </div>
       <div className="flex space-x-2 items-center">
         <LocaleSwitcher currentLocale={locale} />
-
+        {isLoggedIn && userEmail ? (
+          <span className="text-[#1A2A36] font-semibold px-2">{userEmail}</span>
+        ) : null}
         {rightNavbarItems
           .filter(item => {
-            if (isLoggedIn && item.text.toLowerCase() === "login") return false;
+            if (isLoggedIn && (item.text.toLowerCase() === "login")) return false;
             return true;
           })
           .map(item => {
@@ -101,13 +114,18 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
                   className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
                   onClick={() => {
                     localStorage.removeItem("token");
+                    localStorage.removeItem("userEmail");
                     setIsLoggedIn(false);
+                    setUserEmail(null);
                     window.location.href = "/sign-up";
                   }}
                 >
                   Logout
                 </Button>
               );
+            }
+            if (isLoggedIn && item.text.toLowerCase() === "login") {
+              return null;
             }
             return (
               <Button

@@ -29,16 +29,18 @@ export const Register = () => {
     try {
       // Try to login first
       const loginData = await loginUser(email, password);
-      // If login successful, store the token and redirect
+      // If login successful, store the token and email, then redirect
       localStorage.setItem('token', loginData.jwt);
-      window.location.href = '/dashboard'; // Redirect to dashboard
+      localStorage.setItem('userEmail', email);
+      window.location.href = '/watch'; // Redirect to dashboard
     } catch (loginError) {
       // If login fails, try to register
       try {
         const registerData = await registerUser(email, password);
-        // If registration successful, store the token and redirect
+        // If registration successful, store the token and email, then redirect
         localStorage.setItem('token', registerData.jwt);
-        window.location.href = '/dashboard'; // Redirect to dashboard
+        localStorage.setItem('userEmail', email);
+        window.location.href = '/watch'; // Redirect to dashboard
       } catch (registerError) {
         setError(registerError instanceof Error ? registerError.message : 'Registration failed');
       }
