@@ -86,11 +86,11 @@ export default function WatchPage() {
         <div className="grid md:grid-cols-2 gap-6">
           {videos.map((video: any) => (
             <div key={video.id} className="bg-white shadow-md rounded-lg p-4">
-              <h2 className="text-xl font-semibold mb-2">{video.attributes.title}</h2>
-              <p className="text-sm text-gray-600 mb-2">{video.attributes.description}</p>
+              <h2 className="text-xl font-semibold mb-2">{video.title}</h2>
+              <p className="text-sm text-gray-600 mb-2">{video.description}</p>
               <video
                 controls
-                src={`${process.env.NEXT_PUBLIC_API_URL}${video.attributes.video_name}`}
+                src={video.video_name}
                 className="w-full rounded"
               />
               <p className="text-xs mt-2 text-gray-400">Uploaded as: {userEmail}</p>
