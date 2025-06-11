@@ -9,7 +9,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "next-view-transitions";
 import { LocaleSwitcher } from "../locale-switcher";
 
@@ -32,6 +32,14 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+    const handler = () => setIsLoggedIn(!!localStorage.getItem("token"));
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 100) {
@@ -79,17 +87,40 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
       <div className="flex space-x-2 items-center">
         <LocaleSwitcher currentLocale={locale} />
 
-        {rightNavbarItems.map((item) => (
-          <Button
-            key={item.text}
-            variant="simple"
-            className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
-            as={Link}
-            href={`/${locale}${item.URL}`}
-          >
-            {item.text}
-          </Button>
-        ))}
+        {rightNavbarItems
+          .filter(item => {
+            if (isLoggedIn && item.text.toLowerCase() === "login") return false;
+            return true;
+          })
+          .map(item => {
+            if (isLoggedIn && item.text.toLowerCase() === "sign up") {
+              return (
+                <Button
+                  key="logout"
+                  variant="simple"
+                  className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setIsLoggedIn(false);
+                    window.location.href = "/sign-up";
+                  }}
+                >
+                  Logout
+                </Button>
+              );
+            }
+            return (
+              <Button
+                key={item.text}
+                variant="simple"
+                className="bg-[#F6EDDD] text-[#1A2A36] hover:bg-[#e6ddcd] border border-[#F6EDDD] hover:border-[#e6ddcd]"
+                as={Link}
+                href={`/${locale}${item.URL}`}
+              >
+                {item.text}
+              </Button>
+            );
+          })}
       </div>
     </motion.div>
   );
