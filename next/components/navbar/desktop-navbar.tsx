@@ -98,7 +98,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
       <div className="flex space-x-2 items-center">
         <LocaleSwitcher currentLocale={locale} />
         {isLoggedIn && userEmail ? (
-          <span className="text-[#1A2A36] font-semibold px-2">{userEmail}</span>
+          <span className="text-[#F6EDDD] font-semibold px-2">{userEmail}</span>
         ) : null}
         {rightNavbarItems
           .filter(item => {
