@@ -9,61 +9,60 @@ export default function WatchPage() {
   const [error, setError] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userId, setUserId] = useState<number | null>(null);
+  const [hasCheckedAuth, setHasCheckedAuth] = useState(false);
 
   useEffect(() => {
     const fetchVideos = async () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.href = '/'; // ✅ redirect immediately
+        return;
+      }
+
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          window.location.href = '/';
-          return;
-        }
-
-        if (!token) throw new Error('Not logged in');
-
         const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         const user = await userRes.json();
         if (!user.id || !user.email) throw new Error('Unable to get user info');
 
         setUserEmail(user.email);
         setUserId(user.id);
 
-        // More explicit query parameters
         const queryParams = {
           'filters[user_email][$eq]': user.email,
           'filters[user_id][$eq]': user.id,
           'sort': 'createdAt:desc',
-          'populate': '*'
+          'populate': '*',
         };
-        
-        const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?${new URLSearchParams(queryParams)}`;
 
+        const queryURL = `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?${new URLSearchParams(queryParams)}`;
 
         const videoRes = await fetch(queryURL, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        
-        if (videoRes.status === 204) {
-          setVideos([]);
-        } else if (!videoRes.ok) {
-          throw new Error(`Failed to fetch videos: ${videoRes.status} ${videoRes.statusText}`);
-        } else {
-          const data = await videoRes.json();
-          setVideos(data.data || []);
-        }
+
+        if (!videoRes.ok) throw new Error(`Failed to fetch videos: ${videoRes.statusText}`);
+
+        const data = await videoRes.json();
+        setVideos(data.data || []);
       } catch (err: any) {
         console.error('WATCH ERROR:', err);
         setError(err.message || 'Error loading videos');
         setVideos([]);
       } finally {
         setLoading(false);
+        setHasCheckedAuth(true); // ✅ allow rendering after auth check
       }
     };
 
     fetchVideos();
   }, []);
+
+  // ⏳ Don't render anything until we know the auth status
+  if (!hasCheckedAuth) return null;
 
   return (
     <div className="bg-[#f7f3eb] min-h-screen">
@@ -90,11 +89,7 @@ export default function WatchPage() {
             <div key={video.id} className="bg-[#e6ddcd] shadow-md rounded-lg p-4 text-[#1A2A36]">
               <h2 className="text-xl font-semibold mb-2">{video.title}</h2>
               <p className="text-sm text-gray-600 mb-2">{video.description}</p>
-              <video
-                controls
-                src={video.video_name}
-                className="w-full rounded"
-              />
+              <video controls src={video.video_name} className="w-full rounded" />
               <p className="text-xs mt-2 text-gray-400">Uploaded as: {userEmail}</p>
             </div>
           ))}
