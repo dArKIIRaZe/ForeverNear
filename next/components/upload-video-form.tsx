@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-export default function UploadVideoForm() {
+export const UploadVideoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -10,7 +10,6 @@ export default function UploadVideoForm() {
   const [message, setMessage] = useState('');
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
-  // ✅ Redirect if not logged in
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -87,7 +86,7 @@ export default function UploadVideoForm() {
     }
   };
 
-  if (!isAuthChecked) return null; // Don't render form until auth check finishes
+  if (!isAuthChecked) return null;
 
   return (
     <form onSubmit={handleUpload} className="space-y-6">
@@ -130,4 +129,4 @@ export default function UploadVideoForm() {
       {message && <p className="text-sm mt-2">{message}</p>}
     </form>
   );
-}
+};
