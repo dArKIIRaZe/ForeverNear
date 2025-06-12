@@ -19,14 +19,17 @@ export const UploadVideoForm = () => {
     setSuccess('');
     setUploading(true);
 
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('You must be logged in to upload.');
-        if (!token) {
-          window.location.href = '/';
-          return;
-        }
+    
+    const token = localStorage.getItem('token');
+     if (!token) throw new Error('You must be logged in to upload.');
+     if (!token) {
+        window.location.href = '/';
+        return;
+      }
 
+      
+
+    try {
       if (!file) throw new Error('Please select a video file.');
 
       // Step 1: Upload file to S3 via Strapi
