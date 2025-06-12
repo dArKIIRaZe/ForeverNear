@@ -15,10 +15,10 @@ export default function WatchPage() {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
-          window.location.href = '/login';
+          window.location.href = '/';
           return;
         }
-        
+
         if (!token) throw new Error('Not logged in');
 
         const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
