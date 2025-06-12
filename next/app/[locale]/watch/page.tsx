@@ -14,6 +14,11 @@ export default function WatchPage() {
     const fetchVideos = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.href = '/login';
+          return;
+        }
+        
         if (!token) throw new Error('Not logged in');
 
         const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
