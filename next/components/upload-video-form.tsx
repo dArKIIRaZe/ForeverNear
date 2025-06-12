@@ -21,11 +21,13 @@ export const UploadVideoForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      if (!token) throw new Error('You must be logged in to upload.');
+
         if (!token) {
           window.location.href = '/';
           return;
         }
+
+      if (!token) throw new Error('You must be logged in to upload.');
 
       if (!file) throw new Error('Please select a video file.');
 
