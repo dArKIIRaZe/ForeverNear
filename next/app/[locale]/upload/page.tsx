@@ -8,16 +8,26 @@ export default function UploadPage() {
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   useEffect(() => {
+    console.log('[UploadPage] useEffect triggered');
+
     const token = localStorage.getItem('token');
+    console.log('[UploadPage] token from localStorage:', token);
+
     if (!token) {
-      window.location.href = '/'; // Redirect if not logged in
+      console.log('[UploadPage] No token — redirecting to home');
+      window.location.href = '/';
     } else {
-      setIsAuthChecked(true); // Allow rendering
+      console.log('[UploadPage] Token found — rendering form');
+      setIsAuthChecked(true);
     }
   }, []);
 
-  if (!isAuthChecked) return null; // Don't render until auth check completes
+  if (!isAuthChecked) {
+    console.log('[UploadPage] Waiting on auth check, not rendering yet...');
+    return null;
+  }
 
+  console.log('[UploadPage] Auth checked, rendering UploadVideoForm');
   return (
     <div className="relative overflow-hidden">
       <AmbientColor />
@@ -25,4 +35,3 @@ export default function UploadPage() {
     </div>
   );
 }
-
