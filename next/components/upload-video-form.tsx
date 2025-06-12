@@ -12,6 +12,18 @@ export const UploadVideoForm = () => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
+  // ✅ Redirect on mount if not logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = '/';
+    } else {
+      setIsAuthChecked(true);
+    }
+  }, []);
+
 
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,13 +31,11 @@ export const UploadVideoForm = () => {
     setSuccess('');
     setUploading(true);
 
-    
     const token = localStorage.getItem('token');
-     if (!token) throw new Error('You must be logged in to upload.');
-     if (!token) {
-        window.location.href = '/';
-        return;
-      }
+    if (!token) {
+      setMessage('You must be logged in to upload.');
+      return;
+    }
 
       
 
@@ -97,6 +107,9 @@ export const UploadVideoForm = () => {
       setUploading(false);
     }
   };
+
+  // ✅ Prevent form rendering until auth is verified
+  if (!isAuthChecked) return null;
 
   return (
     <div className="bg-[#deddce] relative overflow-hidden min-h-screen">
