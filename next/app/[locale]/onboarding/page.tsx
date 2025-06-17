@@ -27,13 +27,49 @@ export default function OnboardingPage() {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = '/';
-      return;
-    }
+    const checkUserInfo = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = '/';
+        return;
+      }
 
-    setHasCheckedAuth(true);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const user = await res.json();
+
+        // If all fields are already set, redirect to /watch
+        if (
+          user.firstnames &&
+          user.surname &&
+          user.dob &&
+          user.origincountry &&
+          user.residentcountry
+        ) {
+          window.location.href = '/watch';
+          return;
+        }
+
+        // Pre-fill form with any existing values
+        setFirstnames(user.firstnames || '');
+        setSurname(user.surname || '');
+        setDob(user.dob || '');
+        setOrigincountry(user.origincountry || '');
+        setResidentcountry(user.residentcountry || '');
+      } catch (err) {
+        console.error('Failed to fetch user info', err);
+        setError('Error loading user info.');
+      } finally {
+        setHasCheckedAuth(true);
+      }
+    };
+
+    checkUserInfo();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -67,6 +103,9 @@ export default function OnboardingPage() {
       if (!res.ok) throw new Error('Failed to update profile.');
 
       setSuccess('Your details have been saved.');
+      setTimeout(() => {
+        window.location.href = '/watch';
+      }, 1000);
     } catch (err: any) {
       setError(err.message || 'Something went wrong.');
     } finally {
@@ -81,10 +120,13 @@ export default function OnboardingPage() {
       <Container className="pt-24 pb-12 max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold text-[#1A2A36] mb-6">Onboarding</h1>
 
-        <p className="block font-medium mb-1 text-[#1A2A36]">IMPORTANT: The below information will be used as part of the security system to allow people to view your content. <br />It&quot;s important that you enter the correct infomation</p>
-
         {error && <p className="text-red-600 mb-4">{error}</p>}
         {success && <p className="text-green-600 mb-4">{success}</p>}
+
+        <p className="text-[#1A2A36] mb-4">
+          <strong>Important:</strong> This information will help us verify your identity in the future and is required to complete your onboarding.
+        </p>
+
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -123,14 +165,14 @@ export default function OnboardingPage() {
           <div>
             <label className="block font-medium mb-1 text-[#1A2A36]">Country of Residence</label>
             <select
-              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36] bg-white"
               value={residentcountry}
               onChange={(e) => setResidentcountry(e.target.value)}
               required
             >
               <option value="">Select a country</option>
               {countries.map((c) => (
-                <option key={c} value={c} className="text-[#1A2A36]">
+                <option key={c} value={c}>
                   {c}
                 </option>
               ))}
@@ -140,14 +182,14 @@ export default function OnboardingPage() {
           <div>
             <label className="block font-medium mb-1 text-[#1A2A36]">Country of Origin</label>
             <select
-              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36] bg-white"
               value={origincountry}
               onChange={(e) => setOrigincountry(e.target.value)}
               required
             >
               <option value="">Select a country</option>
               {countries.map((c) => (
-                <option key={c} value={c} className="text-[#1A2A36]">
+                <option key={c} value={c}>
                   {c}
                 </option>
               ))}
