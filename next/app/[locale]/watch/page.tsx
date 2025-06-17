@@ -16,7 +16,7 @@ export default function WatchPage() {
       const token = localStorage.getItem('token');
 
       if (!token) {
-        window.location.href = '/'; // ✅ redirect immediately
+        window.location.href = '/';
         return;
       }
 
@@ -54,14 +54,58 @@ export default function WatchPage() {
         setVideos([]);
       } finally {
         setLoading(false);
-        setHasCheckedAuth(true); // ✅ allow rendering after auth check
+        setHasCheckedAuth(true);
       }
     };
 
     fetchVideos();
   }, []);
 
-  // ⏳ Don't render anything until we know the auth status
+  const handleDelete = async (video: any) => {
+    const confirmDelete = window.confirm(`Delete "${video.title}"? This cannot be undone.`);
+    if (!confirmDelete) return;
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You must be logged in to delete.');
+      return;
+    }
+
+    try {
+      // Step 1: Get upload file ID from S3 (based on stored URL)
+      const fileRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/upload/files?filters[url][$eq]=${video.video_name}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const fileData = await fileRes.json();
+      const uploadId = fileData?.[0]?.id;
+
+      // Step 2: Delete S3 file
+      if (uploadId) {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload/files/${uploadId}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+
+      // Step 3: Delete database entry
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos/${video.id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Step 4: Update UI
+      setVideos((prev) => prev.filter((v: any) => v.id !== video.id));
+      alert('Video deleted.');
+    } catch (err: any) {
+      console.error('DELETE ERROR:', err);
+      alert('Failed to delete video.');
+    }
+  };
+
   if (!hasCheckedAuth) return null;
 
   return (
@@ -93,8 +137,9 @@ export default function WatchPage() {
               <p className="text-xs mt-2 text-gray-400">Uploaded as: {userEmail}</p>
               <button
                 onClick={() => handleDelete(video)}
-                className="mt-4 text-red-600 hover:underline text-sm">
-                  Delete
+                className="mt-4 text-red-600 hover:underline text-sm"
+              >
+                Delete
               </button>
             </div>
           ))}
