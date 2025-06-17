@@ -81,7 +81,7 @@ export default function OnboardingPage() {
       <Container className="pt-24 pb-12 max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold text-[#1A2A36] mb-6">Onboarding</h1>
 
-        <p className="block font-medium mb-1 text-[#1A2A36]">IMPORTANT: The below information will be used as part of the security system to allow people to view your content. <br />It's important that you enter the correct infomation</p>
+        <p className="block font-medium mb-1 text-[#1A2A36]">IMPORTANT: The below information will be used as part of the security system to allow people to view your content. <br />It&quot;s important that you enter the correct infomation</p>
 
         {error && <p className="text-red-600 mb-4">{error}</p>}
         {success && <p className="text-green-600 mb-4">{success}</p>}
