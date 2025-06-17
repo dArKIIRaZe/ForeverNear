@@ -91,6 +91,11 @@ export default function WatchPage() {
               <p className="text-sm text-gray-600 mb-2">{video.description}</p>
               <video controls src={video.video_name} className="w-full rounded" />
               <p className="text-xs mt-2 text-gray-400">Uploaded as: {userEmail}</p>
+              <button
+                onClick={() => handleDelete(video)}
+                className="mt-4 text-red-600 hover:underline text-sm">
+                  Delete
+              </button>
             </div>
           ))}
         </div>
