@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -64,6 +64,21 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
+    },
+    "firstnames": {
+      "type": "string"
+    },
+    "surname": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "origincountry": {
+      "type": "string"
+    },
+    "residentcountry": {
+      "type": "string"
     }
   }
 }
