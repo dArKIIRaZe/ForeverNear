@@ -86,10 +86,10 @@ export default function OnboardingPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block font-medium mb-1">First name(s)</label>
+            <label className="block font-medium mb-1 text-[#1A2A36]">First name(s)</label>
             <input
               type="text"
-              className="w-full border border-gray-300 rounded p-2"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
               value={firstnames}
               onChange={(e) => setFirstnames(e.target.value)}
               required
@@ -97,10 +97,10 @@ export default function OnboardingPage() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Surname</label>
+            <label className="block font-medium mb-1 text-[#1A2A36]">Surname</label>
             <input
               type="text"
-              className="w-full border border-gray-300 rounded p-2"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               required
@@ -108,10 +108,10 @@ export default function OnboardingPage() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Date of Birth</label>
+            <label className="block font-medium mb-1 text-[#1A2A36]">Date of Birth</label>
             <input
               type="date"
-              className="w-full border border-gray-300 rounded p-2"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
               value={dob}
               onChange={(e) => setDob(e.target.value)}
               required
@@ -119,16 +119,16 @@ export default function OnboardingPage() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Country of Residence</label>
+            <label className="block font-medium mb-1 text-[#1A2A36]">Country of Residence</label>
             <select
-              className="w-full border border-gray-300 rounded p-2"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
               value={residentcountry}
               onChange={(e) => setResidentcountry(e.target.value)}
               required
             >
               <option value="">Select a country</option>
               {countries.map((c) => (
-                <option key={c} value={c}>
+                <option key={c} value={c} className="text-[#1A2A36]">
                   {c}
                 </option>
               ))}
@@ -136,16 +136,16 @@ export default function OnboardingPage() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Country of Origin</label>
+            <label className="block font-medium mb-1 text-[#1A2A36]">Country of Origin</label>
             <select
-              className="w-full border border-gray-300 rounded p-2"
+              className="w-full border border-gray-300 rounded p-2 text-[#1A2A36]"
               value={origincountry}
               onChange={(e) => setOrigincountry(e.target.value)}
               required
             >
               <option value="">Select a country</option>
               {countries.map((c) => (
-                <option key={c} value={c}>
+                <option key={c} value={c} className="text-[#1A2A36]">
                   {c}
                 </option>
               ))}
