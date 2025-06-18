@@ -118,14 +118,19 @@ export default function WatchPage() {
             Logged in as: <strong>{userEmail}</strong> (ID: {userId})
           </p>
         )}
-
-        {error && <p className="text-red-600 mb-4">{error}</p>}
-        {loading && <p className="text-gray-500 mb-4">Loading...</p>}
-
+        
         {!loading && videos.length === 0 && (
-          <p className="text-gray-600 text-center py-10 text-lg">
-            You haven&apos;t uploaded any videos yet.
-          </p>
+          <div className="text-center py-10">
+            <p className="text-gray-600 text-lg mb-4">
+              You haven&apos;t uploaded any videos yet.
+            </p>
+            <a
+              href="/upload"
+              className="inline-block bg-[#1A2A36] text-white px-6 py-2 rounded hover:bg-[#2e3e4c]"
+            >
+              Upload Your First Video
+            </a>
+          </div>
         )}
 
         <div className="grid md:grid-cols-2 gap-6">
