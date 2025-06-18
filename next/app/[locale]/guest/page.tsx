@@ -19,7 +19,7 @@ export default function GuestPage() {
 
   useEffect(() => {
     if (!userId || !hash) {
-      setError('Missing link information.');
+      setError('Missing user ID or hash from link.');
     }
   }, [userId, hash]);
 
@@ -30,7 +30,6 @@ export default function GuestPage() {
     setSubmitted(true);
 
     try {
-      // 🔐 Step 1: Verify user identity using DOB + surname
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`);
       const user = await res.json();
 
@@ -43,14 +42,16 @@ export default function GuestPage() {
         throw new Error('Verification failed. Please check your answers.');
       }
 
-      // ✅ Step 2: Fetch public videos for that user
+      // ✅ Fetch videos for this user
       const queryParams = new URLSearchParams({
-        'filters[user_id][$eq]': userId,
+        'filters[user_id][$eq]': userId || '',
         'sort': 'createdAt:desc',
         'populate': '*',
       });
 
-      const videoRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?${queryParams}`);
+      const videoRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user-videos?${queryParams}`
+      );
       const videoData = await videoRes.json();
 
       setVideos(videoData.data || []);
@@ -119,7 +120,7 @@ export default function GuestPage() {
         )}
 
         {verified && videos.length === 0 && (
-          <p className="text-center text-gray-600">No public videos found for this user.</p>
+          <p className="text-center text-gray-600">No videos found for this user.</p>
         )}
 
         {verified && videos.length > 0 && (
