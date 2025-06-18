@@ -1459,6 +1459,7 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     firstnames: Schema.Attribute.String;
+    hash: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

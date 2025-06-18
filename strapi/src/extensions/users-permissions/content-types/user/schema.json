@@ -79,6 +79,9 @@
     },
     "residentcountry": {
       "type": "string"
+    },
+    "hash": {
+      "type": "string"
     }
   }
 }
