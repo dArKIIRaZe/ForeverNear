@@ -109,11 +109,12 @@ export default function GuestPage() {
               </button>
             </form>
 
-            <div className="text-center">
+           {<!-- <div className="text-center">
               <button className="text-blue-600 underline text-sm">
                 I don&apos;t know the answers (Lost &amp; Found)
               </button>
             </div>
+            --!}
 
             {submitted && error && (
               <p className="text-red-600 mt-4 text-sm">{error}</p>
