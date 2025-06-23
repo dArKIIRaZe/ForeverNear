@@ -33,6 +33,8 @@ export default function GuestPage() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`);
       const user = await res.json();
 
+      console.log('Fetched user:', user);
+
       if (
         !user ||
         user.hash !== hash ||
